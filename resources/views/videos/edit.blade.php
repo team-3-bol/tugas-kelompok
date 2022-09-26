@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <div class="d-flex justify-content-between align-items-baseline mt-5">
+    <div class="d-flex justify-content-between align-items-baseline">
         <h2>Edit Video</h2>
     </div>
     <form action="{{ route('video.update', $video->id) }}" enctype="multipart/form-data" method="post">

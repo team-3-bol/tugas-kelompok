@@ -2,11 +2,11 @@
 
 @section('content')
     @if(session('success'))
-    <div class="alert alert-success mt-5" role="alert">
+    <div class="alert alert-success" role="alert">
         {{ session('success') }}
     </div>
     @endif
-    <div class="d-flex justify-content-between align-items-baseline mt-2">
+    <div class="d-flex justify-content-between align-items-baseline">
         <h2>Videos</h2>
         <a class="btn btn-primary" href="{{ route('video.create') }}">Create</a>
     </div>
