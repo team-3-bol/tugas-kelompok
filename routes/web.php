@@ -18,4 +18,10 @@ Route::get('/', function () {
     return redirect()->route('video.index');
 });
 
-Route::resource('/video', VideoController::class)->except(['show']);
+Route::prefix('first')->group(function () {
+    Route::resource('/video', VideoController::class)->except(['show']);
+});
+
+Route::prefix('second')->group(function () {
+    Route::resource('/score', VideoController::class)->except(['show']);
+});
