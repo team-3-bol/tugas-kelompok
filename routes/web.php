@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,5 +24,5 @@ Route::prefix('first')->group(function () {
 });
 
 Route::prefix('second')->group(function () {
-    Route::resource('/score', VideoController::class)->except(['show']);
+    Route::resource('/score', ScoreController::class)->except(['show']);
 });
