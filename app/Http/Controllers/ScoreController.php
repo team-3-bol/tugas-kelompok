@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Score;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ScoreController extends Controller
 {
@@ -17,7 +18,8 @@ class ScoreController extends Controller
         $grades = array_unique(Score::orderBy('grade')->get()->pluck('grade')->toArray());
         sort($grades);
         $data['grades'] = $grades;
-        $data['scores'] = Score::select(\DB::raw('count(*)'))->orderBy('grade')->groupBy('grade')->get()->pluck('count');
+        $data['scores'] = Score::select(DB::raw('count(*)'))->orderBy('grade')->groupBy('grade')->get()->pluck('count');
+
         $scores = Score::paginate(10);
         return view('score.index', compact('scores', 'data'));
     }
@@ -85,17 +87,6 @@ class ScoreController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -103,7 +94,8 @@ class ScoreController extends Controller
      */
     public function edit($id)
     {
-        //
+        $score = Score::find($id);
+        return view('score.edit', compact('score'));
     }
 
     /**
@@ -115,7 +107,48 @@ class ScoreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nim' => 'required',
+            'name' => 'required',
+            'major' => 'required',
+            'quiz' => 'required',
+            'task' => 'required',
+            'presence' => 'required',
+            'practice' => 'required',
+            'exam' => 'required'
+        ]);
+
+        $quiz = $request->quiz;
+        $task = $request->task;
+        $presence = $request->presence;
+        $practice = $request->practice;
+        $exam = $request->exam;
+        $final_score = ($quiz + $task + $presence + $practice + $exam) / 5;
+
+        $grade = 'A';
+        if ($final_score <= 65) {
+            $grade = 'D';
+        } else if ($final_score <= 75) {
+            $grade = 'C';
+        } else if ($final_score <= 85) {
+            $grade = 'B';
+        }
+
+        $score = Score::find($id);
+        $score->nim = $request->nim;
+        $score->name = $request->name;
+        $score->major = $request->major;
+        $score->quiz = $quiz;
+        $score->task = $task;
+        $score->presence = $presence;
+        $score->practice = $practice;
+        $score->exam = $exam;
+        $score->final_score = $final_score;
+        $score->grade = $grade;
+        $score->save();
+
+        session()->flash('success', 'The score updated successfully.');
+        return redirect()->route('score.index');
     }
 
     /**
