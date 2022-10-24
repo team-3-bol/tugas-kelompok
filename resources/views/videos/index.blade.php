@@ -22,7 +22,7 @@
             <tbody>
             @forelse($videos as $key => $video)
                 <tr>
-                    <th scope="row">{{ $key + 1 }}</th>
+                    <td scope="row">{{ $key + 1 }}</td>
                     <td>
                         <a href="{{ asset('videos/' . $video->file_name) }}">
                             {{ $video->name }}

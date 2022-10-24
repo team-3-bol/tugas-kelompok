@@ -39,7 +39,7 @@
             <tbody>
             @forelse($scores as $key => $score)
                 <tr>
-                    <th scope="row">{{ $key + 1 }}</th>
+                    <td scope="row">{{ $key + 1 }}</td>
                     <td>{{ $score->nim }}</td>
                     <td>{{ $score->name }}</td>
                     <td>{{ $score->major }}</td>
