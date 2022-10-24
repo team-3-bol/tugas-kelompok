@@ -3,7 +3,9 @@
 /public/hot
 /public/storage
 /public/videos/*
+/public/products/*
 !/public/videos/.gitkeep
+!/public/products/.gitkeep
 /storage/*.key
 /vendor
 .env

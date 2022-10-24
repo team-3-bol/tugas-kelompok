@@ -55,30 +55,23 @@
                 <li class="menu-item has-sub">
                     <a href="#" class='menu-link'>
                         <i class="bi bi-stack"></i>
-                        <span>Components</span>
+                        <span>Produk</span>
                     </a>
                     <div class="submenu">
                         <!-- Wrap to submenu-group-wrapper if you want 3-level submenu. Otherwise remove it. -->
                         <div class="submenu-group-wrapper">
                             <ul class="submenu-group">
-                                <li class="submenu-item  ">
-                                    <a href="component-alert.html" class='submenu-link'>Alert</a>
+                                <li class="submenu-item">
+                                    <a href="{{ route('product.index') }}" class='submenu-link'>Daftar Produk</a>
                                 </li>
-                                <li class="submenu-item  ">
-                                    <a href="component-badge.html" class='submenu-link'>Badge</a>
-                                </li>
-                                <li class="submenu-item  has-sub">
-                                    <a href="#" class='submenu-link'>Extra Components</a>
-
-                                    <ul class="subsubmenu">
-                                        <li class="subsubmenu-item ">
-                                            <a href="extra-component-avatar.html" class="subsubmenu-link">Avatar</a>
-                                        </li>
-                                        <li class="subsubmenu-item ">
-                                            <a href="extra-component-sweetalert.html" class="subsubmenu-link">Sweet Alert</a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                @auth
+                                    <li class="submenu-item">
+                                        <a href="#" class='submenu-link'>Daftar Pembeli</a>
+                                    </li>
+                                    <li class="submenu-item">
+                                        <a href="#" class='submenu-link'>Daftar Staf</a>
+                                    </li>
+                                @endauth
                             </ul>
                         </div>
                     </div>
