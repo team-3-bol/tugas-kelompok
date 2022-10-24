@@ -2,23 +2,24 @@
 
 @section('content')
     @if(session('success'))
-    <div class="alert alert-success" role="alert">
-        {{ session('success') }}
-    </div>
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
     @endif
-    <div class="d-flex justify-content-between align-items-baseline">
+    <div class="d-flex justify-content-between align-items-baseline page-heading">
         <h2>Videos</h2>
         <a class="btn btn-primary" href="{{ route('video.create') }}">Create</a>
     </div>
-    <table class="table table-bordered table-striped mt-2">
-        <thead>
+    <div class="card p-3">
+        <table class="table table-bordered table-striped m-0">
+            <thead>
             <tr>
                 <th scope="col" width="50">#</th>
                 <th scope="col">Name</th>
                 <th scope="col" width="200">Action</th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             @forelse($videos as $key => $video)
                 <tr>
                     <th scope="row">{{ $key + 1 }}</th>
@@ -42,6 +43,7 @@
                     <td colspan="3" class="text-center">No Data</td>
                 </tr>
             @endforelse
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 @endsection

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return redirect()->route('video.index');
-});
+})->name('home');
 
 Route::prefix('first')->group(function () {
     Route::resource('/video', VideoController::class)->except(['show']);
