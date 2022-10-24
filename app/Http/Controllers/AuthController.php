@@ -20,7 +20,7 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password], $request->remember)) {
-            return to_route('home');
+            return redirect()->intended(route('home'));
         }
 
         return to_route('login')->with('error', 'Invalid username or password')->withInput();
