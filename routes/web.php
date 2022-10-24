@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
@@ -25,4 +26,13 @@ Route::prefix('first')->group(function () {
 
 Route::prefix('second')->group(function () {
     Route::resource('/score', ScoreController::class)->except(['show']);
+});
+
+Route::middleware('guest')->group(function () {
+    Route::get('login', [AuthController::class, 'login'])->name('login');
+    Route::post('login', [AuthController::class, 'post_login'])->name('post_login');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
