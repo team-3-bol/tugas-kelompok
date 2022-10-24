@@ -32,10 +32,10 @@
                         </a>
                     </td>
                     <td>{{ $product->description }}</td>
-                    <td>{{ $product->type }}</td>
+                    <td>{{ App\Models\Product::TYPES[trim($product->type)] }}</td>
                     <td>{{ $product->stock }}</td>
-                    <td>{{ $product->purchase_price }}</td>
-                    <td>{{ $product->selling_price }}</td>
+                    <td>Rp{{ number_format($product->purchase_price, 2) }}</td>
+                    <td>Rp{{ number_format($product->selling_price, 2) }}</td>
                     <td class="text-center">
                         <form action="{{ route('product.destroy', $product->id) }}" method="post">
                             @csrf
