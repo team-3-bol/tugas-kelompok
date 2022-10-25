@@ -55,22 +55,22 @@
                 <li class="menu-item has-sub">
                     <a href="#" class='menu-link'>
                         <i class="bi bi-stack"></i>
-                        <span>Produk</span>
+                        <span>Products</span>
                     </a>
                     <div class="submenu">
                         <!-- Wrap to submenu-group-wrapper if you want 3-level submenu. Otherwise remove it. -->
                         <div class="submenu-group-wrapper">
                             <ul class="submenu-group">
                                 <li class="submenu-item">
-                                    <a href="{{ route('product.index') }}" class='submenu-link'>Daftar Produk</a>
+                                    <a href="{{ route('product.index') }}" class='submenu-link'>List of Product</a>
                                 </li>
                                 @auth
                                     <li class="submenu-item">
-                                        <a href="#" class='submenu-link'>Daftar Pembeli</a>
+                                        <a href="{{ route('staff.index') }}" class='submenu-link'>List of Staff</a>
                                     </li>
-                                    <li class="submenu-item">
-                                        <a href="#" class='submenu-link'>Daftar Staf</a>
-                                    </li>
+{{--                                    <li class="submenu-item">--}}
+{{--                                        <a href="#" class='submenu-link'>List of Buyer</a>--}}
+{{--                                    </li>--}}
                                 @endauth
                             </ul>
                         </div>
